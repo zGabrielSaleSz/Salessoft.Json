@@ -94,7 +94,19 @@ namespace Salessoft.Json.Implementation
                 return Serialize(param);
             }
 
+            if (type.IsEnum)
+            {
+                return EvaluateEnum(param);
+            }
+
+
             throw new InvalidTypeException($"Handler not found for type {param.GetType()}");
+        }
+
+
+        private string EvaluateEnum(object param)
+        {
+            return Convert.ToInt64(param).ToString();
         }
 
         private static bool IsRealClass(Type type)
@@ -157,7 +169,7 @@ namespace Salessoft.Json.Implementation
 
         private static string Evaluate(char param)
         {
-            return param.ToString();
+            return $"{SuperJsonConstants.DoubleQuote}\\u{((int)param):X4}{SuperJsonConstants.DoubleQuote}";
         }
 
         private static string Evaluate(byte param)

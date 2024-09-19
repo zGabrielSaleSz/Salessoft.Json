@@ -8,6 +8,7 @@
         internal const char CloseCurlyBrackets = '}';
         internal const char Colon = ':';
         internal const char Comma = ',';
-        internal const string DECIMAL_FORMAT = "G29";
+        //internal const string DECIMAL_FORMAT = "G29";
+        internal const string DECIMAL_FORMAT = "G";
     }
 }
